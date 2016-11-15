@@ -3,23 +3,23 @@ var app = express();
  
 app.get('/', function(req, res) {
     var resultCSV = 'surname,x,y,z\n';
-    for(var i=0.1; i<10; i++){
+    for(var i=0.1; i<40; i++){
         resultCSV += 'David Carpenter,';
-        resultCSV += i%4 + ',';
+        resultCSV += i%48 + ',';
         resultCSV += i%3 + ',';
         resultCSV += i%5;
         resultCSV += '\n';
     }
 
-    for(var i=0.1; i<12; i++){
+    for(var i=0.1; i<42; i++){
         resultCSV += 'Peter Smith,';
         resultCSV += i%4+10 + ',';
-        resultCSV += i%5+5 + ',';
+        resultCSV += i%5+45 + ',';
         resultCSV += i%3;
         resultCSV += '\n';
     }
 
-    for(var i=0.1; i<10; i++){
+    for(var i=0.1; i<40; i++){
         resultCSV += 'Rachel Golightly,';
         resultCSV += i%8 + ',';
         resultCSV += i%5+12 + ',';
@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
         resultCSV += '\n';
     }
 
-    for(var i=0.1; i<15; i++){
+    for(var i=0.1; i<45; i++){
         resultCSV += 'Kate Williamson,';
         resultCSV += i%4+10 + ',';
         resultCSV += i%6 + ',';
