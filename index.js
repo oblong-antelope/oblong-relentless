@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
         resultCSV += '\n';
     }
 
-    for(var i=0.1; i<15; i++){
+    for(var i=0.1; i<12; i++){
         resultCSV += 'Kate Williamson,';
         resultCSV += i%4+10 + ',';
         resultCSV += i%6 + ',';
@@ -35,11 +35,11 @@ app.get('/', function(req, res) {
         resultCSV += '\n';
     }
 
-    for(var i=0.1; i<15; i++){
+    for(var i=0.1; i<12; i++){
         resultCSV += 'Aran Dhaliwal,';
-        resultCSV += i%4+10 + ',';
-        resultCSV += i%6 + ',';
-        resultCSV += i%5+4;
+        resultCSV += i%5+44 + ',';
+        resultCSV += i%4-11 + ',';
+        resultCSV += i%6+12;
         resultCSV += '\n';
     }
 
