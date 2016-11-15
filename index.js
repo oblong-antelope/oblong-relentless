@@ -43,14 +43,6 @@ app.get('/', function(req, res) {
         resultCSV += '\n';
     }
 
-    for(var i=0.3; i<15; i++){
-        resultCSV += 'Frederick Lee,';
-        resultCSV += i%24+10 + ',';
-        resultCSV += i%61 + ',';
-        resultCSV += i%5+16;
-        resultCSV += '\n';
-    }
-
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET');
     res.set('Content-Type', 'text/plain');
