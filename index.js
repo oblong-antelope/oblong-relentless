@@ -2,12 +2,12 @@ var express = require('express');
 var app = express();
  
 app.get('/', function(req, res) {
-    var resultCSV = 'surname,x,y,z\n';
+    var resultCSV = 'surname,x,y,z,x2,y2,z2\n';
     for(var i=0.1; i<10; i+=1.3){
         resultCSV += 'David Carpenter,';
-        resultCSV += i%18 + ',';
-        resultCSV += i%3 + ',';
-        resultCSV += i%5;
+        resultCSV += i%18 + ',' + i%4+10 + ',';
+        resultCSV += i%3 + ',' + i%5+10 + ',';
+        resultCSV += i%5 + ',' + i%3+40;
         resultCSV += '\n';
     }
 
