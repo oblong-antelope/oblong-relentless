@@ -10,18 +10,18 @@ app.get('/', function(req, res) {
         resultCSV += i%3 + ',';
         resultCSV += i%5+10 + ',';
         resultCSV += i%5 + ',';
-        resultCSV += i%3+30;
+        resultCSV += i%3+35;
         resultCSV += '\n';
     }
 
     for(var i=0.1; i<12; i+=1.2){
         resultCSV += 'Peter Smith,';
         resultCSV += i%4+10 + ',';
-        resultCSV += i%5+24 + ',';
+        resultCSV += i%5+62 + ',';
         resultCSV += i%5+15 + ',';
-        resultCSV += i%6+16 + ',';
+        resultCSV += i%6+83 + ',';
         resultCSV += i%3 + ',';
-        resultCSV += i%5+27;
+        resultCSV += i%5+28;
         resultCSV += '\n';
     }
 
