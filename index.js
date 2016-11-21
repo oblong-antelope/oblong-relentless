@@ -7,9 +7,9 @@ app.get('/', function(req, res) {
         ds[i] = {
             label: 'abcd',
             data: [{
-                x:10,
-                y:10,
-                r:10
+                x:10*Math.random(),
+                y:10*Math.random(),
+                r:10*Math.random()
             }],
             backgroundColor:'#FF89AA'
         };
