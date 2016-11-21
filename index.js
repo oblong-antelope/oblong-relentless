@@ -3,7 +3,7 @@ var app = express();
  
 app.get('/', function(req, res) {
     var ds = [];
-    for(var i=0; i< 100; i++){
+    for(var i=0; i< 10000; i++){
         ds[i] = {
             label: 'abcd',
             data: [{
