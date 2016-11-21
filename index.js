@@ -2,33 +2,24 @@ var express = require('express');
 var app = express();
  
 app.get('/', function(req, res) {
+    var ds = [];
+    for(int i=0; i< 100; i++){
+        ds[i] = {
+            label: 'abcd',
+            data: [{
+                x:10,
+                y:10,
+                r:10
+            }],
+            backgroundColor:'#FF89AA'
+        };
+    }
+
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET');
     res.set('Content-Type', 'text/plain');
     res.send(JSON.stringify({
-        datasets: [
-            {
-                label: 'Phoebe Parker',
-                data: [
-                    {
-                        x: 20,
-                        y: 30,
-                        r: 15
-                    }
-                ],
-                backgroundColor:"#FF6384"
-            },
-            {
-                label: 'Thomas Jones',
-                data: [
-                    {
-                        x: 25,
-                        y: 10,
-                        r: 12
-                    }
-                ],
-                backgroundColor:"#FF6384"
-            }]
+        datasets: ds
     }));
 });
 
