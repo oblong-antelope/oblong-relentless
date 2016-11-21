@@ -5,7 +5,7 @@ app.get('/', function(req, res) {
     var ds = [];
     for(var i=0; i< 1000; i++){
         ds[i] = {
-            label: '<Mathematics, AMMP>Rogers, Blaine',
+            label: (1000*Math.random()).toString(),
             data: [{
                 x:10*Math.random(),
                 y:10*Math.random(),
