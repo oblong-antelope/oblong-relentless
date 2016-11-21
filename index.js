@@ -9,7 +9,7 @@ app.get('/', function(req, res) {
             data: [{
                 x:10*Math.random(),
                 y:10*Math.random(),
-                r:5*Math.random()+24
+                r:5*Math.random()+8
             }],
             backgroundColor:'#FF89AA'
         };
