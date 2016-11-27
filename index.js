@@ -2,7 +2,16 @@ var express = require('express');
 var $ = require('jquery');
 var app = express();
 
-app.get('/', function(req, res) {
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+
+app.post('/', function(req, res) {
+    conosl.log(req.body.origin);
     var ds = [];
     for(var i=0; i< 1000; i++){
         ds[i] = {
@@ -17,7 +26,7 @@ app.get('/', function(req, res) {
     }
 
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET');
+    res.header('Access-Control-Allow-Methods', 'POST');
     res.set('Content-Type', 'text/plain');
     res.send(JSON.stringify({
         datasets: ds
