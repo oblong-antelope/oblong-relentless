@@ -13,22 +13,17 @@ app.use(bodyParser.json());
 app.post('/', function(req, res) {
     console.log(req.body.origin);
     var ds = [];
-    if(req.body.origin==='0'){
 
-        for(var i=0; i< 1000; i++){
-            ds[i] = {
-                label: (1000*Math.random()).toString(),
-                data: [{
-                    x:10*Math.random(),
-                    y:10*Math.random(),
-                    r:5*Math.random()+8
-                }],
-                backgroundColor:'#FF89AA'
-            };
-        }
-
-    }else{
-
+    for(var i=0; i< parseInt(req.body.origin); i++){
+        ds[i] = {
+            label: (1000*Math.random()).toString(),
+            data: [{
+                x:10*Math.random(),
+                y:10*Math.random(),
+                r:5*Math.random()+8
+            }],
+            backgroundColor:'#FF89AA'
+        };
     }
 
     res.header('Access-Control-Allow-Origin', '*');
