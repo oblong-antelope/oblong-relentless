@@ -63,21 +63,29 @@ function updatePrices() {
 }
 
 function addDataSetGroup(dotColor, xOrigin, yOrigin){
-    postRequest.get(SERVER_ADDRESS + '/api/people/8', function(err, response, body){
-        var parBody = JSON.parse(body);
-        var name = parBody.name.title + ' ' + parBody.name.first
-            + ' ' + parBody.name.initials + ' ' + parBody.name.last;
-        var department = parBody.department;
-        var label = ' [' + department + '] ' + name;
+    for(var i=0; i<22; i++) {
+        postRequest.get(SERVER_ADDRESS + '/api/people/' + i, function (err, response, body) {
+            var parBody;
+            try {
+                parBody = JSON.parse(body);
+            }catch(e){
+                console.log(e);
+                return;
+            }
+            var name = parBody.name.title + ' ' + parBody.name.first
+                + ' ' + parBody.name.initials + ' ' + parBody.name.last;
+            var department = parBody.department;
+            var label = ' [' + department + '] ' + name;
 
-        DATASET[0] = {
-            label: label,
-            x: xOrigin + Math.random(),
-            y: yOrigin + Math.random(),
-            r: 5*Math.random()+8,
-            backgroundColor: dotColor
-        };
-    });
+            DATASET[i] = {
+                label: label,
+                x: xOrigin + 3*Math.random(),
+                y: yOrigin + 3*Math.random(),
+                r: 5 * Math.random() + 8,
+                backgroundColor: dotColor
+            };
+        });
+    }
 }
 
 updatePrices();
