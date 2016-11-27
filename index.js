@@ -58,7 +58,7 @@ function updatePrices() {
             x:10*Math.random(),
             y:10*Math.random(),
             r:5*Math.random()+8,
-            backgroundColor:'#FF89AA'
+            backgroundColor: '#'+Math.floor(Math.random()*16777215).toString(16)
         };
     }
 }
