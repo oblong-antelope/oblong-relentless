@@ -28,7 +28,7 @@ function formDataSets(origin){
     ds = [];
     var j = 0;
     for(var i=0; i<DATASET.length; i++){
-        if(DATASET[i].x>8 && DATASET[i].y>8) {
+        if(DATASET[i].x>8.9 && DATASET[i].y>8.9) {
             ds[j] = {
                 label:'abc',
                 data:[{
