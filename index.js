@@ -54,7 +54,7 @@ function updatePrices() {
 
     for(var i=0; i< parseInt(100); i++){
         DATASET[i] = {
-            label: (1000*Math.random()).toString(),
+            label: (100000*Math.random()).toString(),
             x:10*Math.random(),
             y:10*Math.random(),
             r:5*Math.random()+8,
