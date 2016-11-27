@@ -28,6 +28,7 @@ function formDataSets(origin){
     ds = [];
     var j = 0;
     for(var i=0; i<DATASET.length; i++){
+        if(DATASET==null){continue;}
         if(DATASET[i].x>0 && DATASET[i].y>0) {
             ds[j] = {
                 label: DATASET[i].label,
@@ -63,7 +64,7 @@ function updatePrices() {
 }
 
 function addDataSetGroup(dotColor, xOrigin, yOrigin){
-    for(var i=0; i<22; i++) {
+    for(var i=0; i<23; i++) {
         postRequest.get(SERVER_ADDRESS + '/api/people/' + i, function (err, response, body) {
             var parBody;
             try {
