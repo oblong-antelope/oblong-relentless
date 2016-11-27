@@ -30,7 +30,7 @@ function formDataSets(origin){
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i].x>0 && DATASET[i].y>0) {
             ds[j] = {
-                label: x.toString().substring(0,4) + '  ' + y.toString().substring(0,4),
+                label: DATASET[i].x.toString().substring(0,4) + '  ' + DATASET[i].y.toString().substring(0,4),
                 data:[{
                     x:DATASET[i].x,
                     y:DATASET[i].y,
@@ -61,6 +61,10 @@ function updatePrices() {
             backgroundColor: '#'+Math.floor(Math.random()*16777215).toString(16)
         };
     }
+}
+
+function addDataSetGroup(){
+
 }
 
 updatePrices();
