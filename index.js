@@ -46,13 +46,12 @@ function formDataSets(origin){
 
 
 
-var PORT = process.env.PORT || 1140;
+var SERVER_ADDRESS = "https://oblong-adventures.herokuapp.com";
 function updatePrices() {
-    /*postRequest.post(SERVER_ADDRESS, {request:'stockPrice'}, function(err, response, body){
-        console.log(body);
-    });*/
 
-    for(var i=0; i< parseInt(1000); i++){
+    addDataSetGroup('#'+Math.floor(Math.random()*16777215).toString(16), 5, 5);
+
+    /*for(var i=0; i< parseInt(1000); i++){
         DATASET[i] = {
             label: (1000*Math.random()).toString(),
             x:10*Math.random(),
@@ -60,19 +59,28 @@ function updatePrices() {
             r:5*Math.random()+8,
             backgroundColor: '#'+Math.floor(Math.random()*16777215).toString(16)
         };
-    }
+    }*/
 }
 
-function addDataSetGroup(){
-
+function addDataSetGroup(dotColor, xOrigin, yOrigin){
+    postRequest.get(SERVER_ADDRESS + '/api/people/8', function(err, response, body){
+        var parBody = JSON.parse(body);
+        var label = parBody.name.title + ' ' + parBody.name.first + ' ' + parBody.name.last;
+        DATASET[0] = {
+            label: label,
+            x: xOrigin + Math.random(),
+            y: yOrigin + Math.random(),
+            r: 5*Math.random()+8,
+            backgroundColor: dotColor
+        };
+    });
 }
 
 updatePrices();
 
 
 
-
-var SERVER_ADDRESS = "http://young-plateau-61675.herokuapp.com";
+var PORT = process.env.PORT || 1140;
 var server = app.listen(PORT, function(){
     var host = server.address().address;
     var port = server.address().port;
