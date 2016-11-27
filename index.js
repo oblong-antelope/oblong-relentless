@@ -65,7 +65,11 @@ function updatePrices() {
 function addDataSetGroup(dotColor, xOrigin, yOrigin){
     postRequest.get(SERVER_ADDRESS + '/api/people/8', function(err, response, body){
         var parBody = JSON.parse(body);
-        var label = parBody.name.title + ' ' + parBody.name.first + ' ' + parBody.name.last;
+        var name = parBody.name.title + ' ' + parBody.name.first
+            + ' ' + parBody.name.initials + ' ' + parBody.name.last;
+        var faculty = parBody.faculty;
+        var department = parBody.department;
+        var label = ' ' + name + '\n ' + department + '\n ' + faculty;
         DATASET[0] = {
             label: label,
             x: xOrigin + Math.random(),
