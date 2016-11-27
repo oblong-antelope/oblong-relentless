@@ -30,7 +30,7 @@ function formDataSets(origin){
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i].x>0 && DATASET[i].y>0) {
             ds[j] = {
-                label: DATASET[i].x.toString().substring(0,4) + '  ' + DATASET[i].y.toString().substring(0,4),
+                label: DATASET[i].label,
                 data:[{
                     x:DATASET[i].x,
                     y:DATASET[i].y,
