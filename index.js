@@ -41,5 +41,3 @@ var server = app.listen(PORT, function(){
 
     console.log('Started Server at %s:%s', host, port);
 });
-
-updatePrices();
