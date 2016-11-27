@@ -67,9 +67,9 @@ function addDataSetGroup(dotColor, xOrigin, yOrigin){
         var parBody = JSON.parse(body);
         var name = parBody.name.title + ' ' + parBody.name.first
             + ' ' + parBody.name.initials + ' ' + parBody.name.last;
-        var faculty = parBody.faculty;
         var department = parBody.department;
-        var label = ' ' + name + '\n ' + department + '\n ' + faculty;
+        var label = ' [' + department + '] ' + name;
+
         DATASET[0] = {
             label: label,
             x: xOrigin + Math.random(),
