@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 
 app.post('/', function(req, res) {
-    conosl.log(req.body.origin);
+    console.log(req.body.origin);
     var ds = [];
     for(var i=0; i< 1000; i++){
         ds[i] = {
