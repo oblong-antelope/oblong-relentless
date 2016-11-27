@@ -12,7 +12,7 @@ var DATASET = [];
 
 
 app.post('/', function(req, res) {
-    console.log(req.body.origin);
+    //console.log(req.body.origin);
 
     ds = formDataSets(req.body.origin);
 
@@ -29,7 +29,7 @@ function formDataSets(origin){
     var j = 0;
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i]==null){continue;}
-        if(DATASET[i].x>0 && DATASET[i].y>0) {
+        //if(DATASET[i].x>0 && DATASET[i].y>0) {
             ds[j] = {
                 label: DATASET[i].label,
                 data:[{
@@ -37,10 +37,11 @@ function formDataSets(origin){
                     y:DATASET[i].y,
                     r:DATASET[i].r,
                 }],
-                backgroundColor:DATASET[i].backgroundColor
+                backgroundColor:/*DATASET[i].backgroundColor*/'#'+Math.floor(Math.random()*16777215).toString(16)
             };
             j++;
-        }
+
+        //}
     }
     return ds;
 }
@@ -50,7 +51,7 @@ function formDataSets(origin){
 var SERVER_ADDRESS = "https://oblong-adventures.herokuapp.com";
 function updatePrices() {
 
-    addDataSetGroup('#'+Math.floor(Math.random()*16777215).toString(16), 5, 5);
+    addDataSetGroup('#'+Math.floor(Math.random()*16777215).toString(16), 5, 5, 0);
 
     /*for(var i=0; i< parseInt(1000); i++){
         DATASET[i] = {
@@ -63,21 +64,14 @@ function updatePrices() {
     }*/
 }
 
-function addDataSetGroup(dotColor, xOrigin, yOrigin){
-    for(var i=0; i<23; i++) {
-        postRequest.get(SERVER_ADDRESS + '/api/people/' + i, function (err, response, body) {
-            var parBody;
-            try {
-                parBody = JSON.parse(body);
-            }catch(e){
-                console.log(e);
-                return;
-            }
+function addDataSetGroup(dotColor, xOrigin, yOrigin, i){
+    postRequest.get(SERVER_ADDRESS + '/api/people/' + i, function (err, response, body) {
+        try {
+            var parBody = JSON.parse(body);
             var name = parBody.name.title + ' ' + parBody.name.first
                 + ' ' + parBody.name.initials + ' ' + parBody.name.last;
             var department = parBody.department;
             var label = ' [' + department + '] ' + name;
-
             DATASET[i] = {
                 label: label,
                 x: xOrigin + 3*Math.random(),
@@ -85,7 +79,13 @@ function addDataSetGroup(dotColor, xOrigin, yOrigin){
                 r: 5 * Math.random() + 8,
                 backgroundColor: dotColor
             };
-        });
+            console.log(i);
+        }catch(e){
+            console.log(i + ' failed');
+        }
+    });
+    if(i<23) {
+        addDataSetGroup(dotColor, xOrigin, yOrigin, i + 1);
     }
 }
 
