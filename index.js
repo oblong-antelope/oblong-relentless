@@ -52,9 +52,9 @@ function updatePrices() {
         console.log(body);
     });*/
 
-    for(var i=0; i< parseInt(100000); i++){
+    for(var i=0; i< parseInt(1000); i++){
         DATASET[i] = {
-            label: (100000*Math.random()).toString(),
+            label: (1000*Math.random()).toString(),
             x:10*Math.random(),
             y:10*Math.random(),
             r:5*Math.random()+8,
