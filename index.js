@@ -28,7 +28,7 @@ function formDataSets(origin){
     ds = [];
     var j = 0;
     for(var i=0; i<DATASET.length; i++){
-        if(DATASET==null){continue;}
+        if(DATASET[i]==null){continue;}
         if(DATASET[i].x>0 && DATASET[i].y>0) {
             ds[j] = {
                 label: DATASET[i].label,
