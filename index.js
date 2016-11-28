@@ -84,7 +84,7 @@ function addDataSetGroup(dotColor, xOrigin, yOrigin, i){
             console.log(i + ' failed');
         }
     });
-    if(i<23) {
+    if(i<1000) {
         addDataSetGroup(dotColor, xOrigin, yOrigin, i + 1);
     }
 }
