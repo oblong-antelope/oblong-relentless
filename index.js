@@ -132,6 +132,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
             addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
             clearInterval(HASH_ADD_TIMER);
         }
+        console.log('hset size is --------------' + hSet.size);
     }, 10000);
 }
 
