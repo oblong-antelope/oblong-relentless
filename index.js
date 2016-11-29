@@ -36,12 +36,13 @@ app.post('/', function(req, res) {
 function formDataSets(origin){
     ds = [];
     var j = 0;
+    var leftb = origin[0];
+    var rightb = origin[2];
+    var upb = origin[1];
+    var downb = origin[3];
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i]==null){continue;}
-        var leftb = origin[0];
-        var rightb = origin[2];
-        var upb = origin[1];
-        var downb = origin[3];
+
         console.log(leftb + '  ' + rightb + '  ' + upb + '  ' + downb);
         if(DATASET[i].x>leftb && DATASET[i].y>upb && DATASET[i].x<rightb && DATASET[i].y<downb) {
             ds[j] = {
@@ -54,8 +55,25 @@ function formDataSets(origin){
                 backgroundColor:DATASET[i].backgroundColor
             };
             j++;
-
         }
+    }
+    ds[DATASET.length] = {
+        label: '',
+        data: [{
+            x: leftb,
+            y: upb,
+            r: 0.3
+        }],
+        backgroundColor:'#000000'
+    }
+    ds[DATASET.length+1] = {
+        label: '',
+        data: [{
+            x: rightb,
+            y: downb,
+            r: 0.3
+        }],
+        backgroundColor:'#000000'
     }
     return ds;
 }
