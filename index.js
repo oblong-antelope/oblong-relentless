@@ -28,6 +28,24 @@ app.post('/', function(req, res) {
     }));
 });
 
+app.put('/', function(req, res){
+    //pave the way for a new hset
+    var EMPTY_HASH_TIMER = setInterval(function() {
+        if(hSet.size==0 && TOTAL_GROUPS<20) {
+            addDataSetGroupByLinkReturnInterest('/api/people/' + Math.random().toString().slice(-3));
+            clearInterval(EMPTY_HASH_TIMER);
+            TOTAL_GROUPS++;
+        }
+    }, 10000);
+
+    var HASH_ADD_TIMER = setInterval(function(){
+        if(hSet.size>MAX_HASH-2){
+            addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
+            clearInterval(HASH_ADD_TIMER);
+        }
+    }, 10000);
+});
+
 function formDataSets(origin){
     ds = [];
     var j = 0;
