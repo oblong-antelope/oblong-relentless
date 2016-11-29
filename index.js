@@ -38,7 +38,13 @@ function formDataSets(origin){
     var j = 0;
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i]==null){continue;}
-        if(DATASET[i].x>5*origin[2] && DATASET[i].y>5*origin[2] && DATASET[i].x<40 - 5*origin[2] && DATASET[i].y<25 - 5*origin[2]) {
+        var cx = origin[0];
+        var cy = origin[1];
+        var leftb = origin[0] - (20 - origin[2]*2);
+        var rightb = origin[0] + (20 - origin[2]*2);
+        var upb = origin[1] - (12.5 - origin[2]*2);
+        var downb = origin[1] + (12.5 - origin[2]*2);
+        if(DATASET[i].x>leftb && DATASET[i].y>upb && DATASET[i].x<rightb && DATASET[i].y<downb) {
             ds[j] = {
                 label: DATASET[i].label,
                 data:[{
