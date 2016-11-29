@@ -131,7 +131,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash(generateRandomColour(), Math.random()*40, Math.random()*25);
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*100, Math.random()*60);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
