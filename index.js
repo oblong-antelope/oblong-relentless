@@ -106,11 +106,12 @@ function getPeopleOfSimilarInterests(topicKeyword){
 
 function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     var i = 0;
-    for(var link in hSet){
+    console.log('at adding pt' + hSet.size);
+    hSet.forEach(function(link){
         console.log(link);
         addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i);
         i++;
-    }
+    });
 }
 
 function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
