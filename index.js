@@ -120,7 +120,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     //pave the way for a new hset
     var EMPTY_HASH_TIMER = setInterval(function() {
         if(hSet.size==0 && TOTAL_GROUPS<20) {
-            addDataSetGroupByLinkReturnInterest('#00FFFF', Math.random()*100, Math.random()*100, '/api/people/771');
+            addDataSetGroupByLinkReturnInterest('#00FFFF', Math.random()*50, Math.random()*50, '/api/people/' + Math.floor((Math.random() * 1000) + 1));
             clearInterval(EMPTY_HASH_TIMER);
             TOTAL_GROUPS++;
         }
@@ -128,7 +128,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
 
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2){
-            addDataSetGroupByHash('#00FFFF', Math.random()*100, Math.random()*100);
+            addDataSetGroupByHash('#00FFFF', Math.random()*50, Math.random()*50);
             clearInterval(HASH_ADD_TIMER);
         }
     }, 10000);
