@@ -61,6 +61,24 @@ function formDataSets(origin){
             j++;
         }
     }
+    ds[DATASET.length] = {
+        label: 'a',
+        data: [{
+            x: leftb,
+            y: upb,
+            r: 0.3
+        }],
+        backgroundColor:'#FFFFFF'
+    }
+    ds[DATASET.length+1] = {
+        label: 'a',
+        data: [{
+            x: rightb,
+            y: downb,
+            r: 0.3
+        }],
+        backgroundColor:'#FFFFFF'
+    }
     return ds;
 }
 
