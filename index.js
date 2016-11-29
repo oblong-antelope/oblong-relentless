@@ -12,6 +12,7 @@ var DATASET = [];
 var hSet = new Set();
 var MAX_HASH = 30;
 
+var EPOCHS_WAITED = 0;
 
 var TOTAL_GROUPS = 30;
 var CURRENT_GROUP = 0;
@@ -124,15 +125,16 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
             addDataSetGroupByLinkReturnInterest('/api/people/' + Math.random().toString().slice(-3));
             clearInterval(EMPTY_HASH_TIMER);
         }
-        console.log('hset size is --------------' + hSet.size);
     }, 10000);
 
     var HASH_ADD_TIMER = setInterval(function(){
-        if(hSet.size>MAX_HASH-2){
+        if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>10){
+            EPOCHS_WAITED = 0;
             addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
             clearInterval(HASH_ADD_TIMER);
         }
-        console.log('hset size is --------------' + hSet.size);
+        EPOCHS_WAITED++;
+        console.log('hset size is --------------' + hSet.size + ' --- epochs ' + EPOCHS_WAITED);
     }, 10000);
 }
 
