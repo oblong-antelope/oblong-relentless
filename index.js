@@ -51,9 +51,14 @@ function formDataSets(origin){
 var SERVER_ADDRESS = "https://oblong-adventures.herokuapp.com";
 function updatePrices() {
 
-    for(var i=0; i<1000; i++){
+    var i = 0;
+    setInterval(function(){
         addDataSetGroup('#' + Math.floor(Math.random() * 16777215).toString(16), 5, 5, i);
-    }
+        i++;
+    }, 100);
+    /*for(var i=990; i<1000; i++){
+        addDataSetGroup('#' + Math.floor(Math.random() * 16777215).toString(16), 5, 5, i);
+    }*/
     /*for(var i=0; i< parseInt(1000); i++){
         DATASET[i] = {
             label: (1000*Math.random()).toString(),
@@ -82,7 +87,7 @@ function addDataSetGroup(dotColor, xOrigin, yOrigin, i){
             };
             console.log(i);
         }catch(e){
-            console.log(i + ' failed');
+            console.log(i + ' failed ' + e);
         }
     });
 }
