@@ -154,6 +154,7 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
                 backgroundColor: dotColor
             };
             console.log(i);
+            console.log(hSet.size);
         }catch(e){
             console.log(i + ' failed ' + e);
         }
