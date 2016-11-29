@@ -22,6 +22,11 @@ var CURRENT_GROUP = 0;
 
 var EPOCH_TIME = 5000;
 
+var ENTIRE_WORLD_SIZE_X = 60;
+var ENTIRE_WORLD_SIZE_Y = 100;
+
+
+
 app.post('/', function(req, res) {
     //console.log(req.body.origin);
 
@@ -67,7 +72,7 @@ function updatePrices() {
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash(generateRandomColour(), Math.random()*100, Math.random()*60);
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*ENTIRE_WORLD_SIZE_Y, Math.random()*ENTIRE_WORLD_SIZE_X);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
@@ -131,7 +136,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash(generateRandomColour(), Math.random()*100, Math.random()*60);
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*ENTIRE_WORLD_SIZE_Y, Math.random()*ENTIRE_WORLD_SIZE_X);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
