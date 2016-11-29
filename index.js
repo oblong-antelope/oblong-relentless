@@ -125,6 +125,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
             clearInterval(EMPTY_HASH_TIMER);
             TOTAL_GROUPS++;
         }
+        console.log('hset size is --------------' + hSet.size);
     }, 10000);
 
     var HASH_ADD_TIMER = setInterval(function(){
@@ -132,7 +133,6 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
             addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
             clearInterval(HASH_ADD_TIMER);
         }
-        console.log('hset size is --------------' + hSet.size);
     }, 10000);
 }
 
