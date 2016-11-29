@@ -38,56 +38,20 @@ app.post('/', function(req, res) {
 function formDataSets(origin){
     ds = [];
     var j = 0;
-    var leftb;
-    var rightb;
-    var upb;
-    var downb;
-    if(origin[0]==null || origin[1]==null || origin[2]==null || origin[3]==null) {
-        leftb = 0;
-        rightb = 40;
-        upb = 0;
-        downb = 25;
-    }else{
-        leftb = origin[0];
-        rightb = origin[2];
-        upb = origin[1];
-        downb = origin[3];
-    }
-    console.log(leftb + '  ' + rightb + '  ' + upb + '  ' + downb);
 
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i]==null){continue;}
 
-        if(DATASET[i].x>leftb && DATASET[i].y>upb && DATASET[i].x<rightb && DATASET[i].y<downb) {
-            ds[j] = {
-                label: DATASET[i].label,
-                data:[{
-                    x:DATASET[i].x,
-                    y:DATASET[i].y,
-                    r:DATASET[i].r,
-                }],
-                backgroundColor:DATASET[i].backgroundColor
-            };
-            j++;
-        }
-    }
-    ds[j] = {
-        label: 'a',
-        data: [{
-            x: leftb,
-            y: upb,
-            r: 0.3
-        }],
-        backgroundColor:'#FFFFFF'
-    }
-    ds[j+1] = {
-        label: 'a',
-        data: [{
-            x: rightb,
-            y: downb,
-            r: 0.3
-        }],
-        backgroundColor:'#FFFFFF'
+        ds[j] = {
+            label: DATASET[i].label,
+            data:[{
+                x:DATASET[i].x,
+                y:DATASET[i].y,
+                r:DATASET[i].r,
+            }],
+            backgroundColor:DATASET[i].backgroundColor
+        };
+        j++;
     }
     return ds;
 }
@@ -109,7 +73,7 @@ function updatePrices() {
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash(generateRandomColour(), Math.random()*40, Math.random()*25);
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*400, Math.random()*250);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
@@ -199,8 +163,8 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
             var label = ' [' + department + '] ' + name;
             DATASET[i] = {
                 label: label,
-                x: xOrigin + 3*Math.random(),
-                y: yOrigin + 3*Math.random(),
+                x: xOrigin + 8*Math.random(),
+                y: yOrigin + 8*Math.random(),
                 r: 5 * Math.random() + 8,
                 backgroundColor: dotColor
             };
