@@ -43,7 +43,7 @@ function formDataSets(origin){
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i]==null){continue;}
 
-        console.log(leftb + '   ' + rightb + '   ' + upb + '   ' + downb);
+        console.log(leftb + '  ' + rightb + '  ' + upb + '  ' + downb);
         if(DATASET[i].x>leftb && DATASET[i].y>upb && DATASET[i].x<rightb && DATASET[i].y<downb) {
             ds[j] = {
                 label: DATASET[i].label,
@@ -62,15 +62,6 @@ function formDataSets(origin){
         data: [{
             x: leftb,
             y: upb,
-            r: 0.3
-        }],
-        backgroundColor:'#000000'
-    }
-    ds[DATASET.length+1] = {
-        label: '',
-        data: [{
-            x: rightb,
-            y: downb,
             r: 0.3
         }],
         backgroundColor:'#000000'
