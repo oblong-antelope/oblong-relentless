@@ -128,7 +128,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
 
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2){
-            addDataSetGroupByHash('#FFFF00', Math.random()*1000, Math.random()*1000);
+            addDataSetGroupByHash('#F0FF00', Math.random()*1000, Math.random()*1000);
             clearInterval(HASH_ADD_TIMER);
         }
     }, 10000);
