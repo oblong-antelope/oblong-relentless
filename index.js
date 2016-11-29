@@ -61,19 +61,13 @@ function formDataSets(origin){
 var SERVER_ADDRESS = "https://oblong-adventures.herokuapp.com";
 function updatePrices() {
 
-    //displays all datapoints up to MAX_PT
-    //var MAX_PT = 1000;
-    /*for(var i=1; i<MAX_PT; i++){
-        addDataSetGroup('#' + Math.floor(Math.random() * 16777215).toString(16), 5, 5, i);
-    }*/
-
     var startIdx = 24;
     addDataSetGroupByLinkReturnInterest('/api/people/'+startIdx);
 
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash(generateRandomColour(), Math.random()*400, Math.random()*250);
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*100, Math.random()*60);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
