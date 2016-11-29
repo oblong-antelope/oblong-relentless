@@ -14,7 +14,7 @@ var MAX_HASH = 30;
 
 var EPOCHS_WAITED = 0;
 
-var TOTAL_GROUPS = 20;
+var TOTAL_GROUPS = 30;
 var CURRENT_GROUP = 0;
 
 app.post('/', function(req, res) {
