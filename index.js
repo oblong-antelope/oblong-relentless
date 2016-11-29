@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 var DATASET = [];
 var hSet = new Set();
 var MAX_HASH = 20;
+var HASH_ADD_TIMER;
 
 
 app.post('/', function(req, res) {
@@ -38,7 +39,7 @@ function formDataSets(origin){
                     y:DATASET[i].y,
                     r:DATASET[i].r,
                 }],
-                backgroundColor:/*DATASET[i].backgroundColor*/'#'+Math.floor(Math.random()*16777215).toString(16)
+                backgroundColor:DATASET[i].backgroundColor
             };
             j++;
 
@@ -61,6 +62,15 @@ function updatePrices() {
     var startIdx = 24;
     addDataSetGroupByLinkReturnInterest('#00FF00', 10, 10, '/api/people/'+startIdx);
 
+    HASH_ADD_TIMER = setInterval(timerForHashAdd, 1000);
+}
+
+function timerForHashAdd(){
+    console.log('here' + hSet.size);
+    if(hSet.size<29){
+        addDataSetGroupByHash('#00FF00', 10, 10);
+        clearInterval(HASH_ADD_TIMER);
+    }
 }
 
 
@@ -74,8 +84,6 @@ function addDataSetGroupByLinkReturnInterest(dotColor, xOrigin, yOrigin, link){
             for(var keys in keywords){
                 getPeopleOfSimilarInterests(keys);
             }
-
-            addDataSetGroupByHash(dotColor, xOrigin, yOrigin);
         }catch(e){
             console.log(link + ' failed ' + e);
         }
@@ -100,6 +108,7 @@ function getPeopleOfSimilarInterests(topicKeyword){
 function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     var i = 0;
     for(var link in hSet){
+        console.log(link);
         addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i);
         i++;
     }
