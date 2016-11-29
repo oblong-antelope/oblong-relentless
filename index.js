@@ -51,7 +51,7 @@ function formDataSets(origin){
 var SERVER_ADDRESS = "https://oblong-adventures.herokuapp.com";
 function updatePrices() {
 
-    for(int i=0; i<1000; i++){
+    for(var i=0; i<1000; i++){
         addDataSetGroup('#' + Math.floor(Math.random() * 16777215).toString(16), 5, 5, i);
     }
     /*for(var i=0; i< parseInt(1000); i++){
