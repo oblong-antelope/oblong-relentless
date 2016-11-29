@@ -10,8 +10,11 @@ app.use(bodyParser.json());
 
 var DATASET = [];
 var hSet = new Set();
-var MAX_HASH = 20;
+var MAX_HASH = 30;
 
+
+var TOTAL_GROUPS = 10;
+var CURRENT_GROUP = 0;
 
 app.post('/', function(req, res) {
     //console.log(req.body.origin);
@@ -62,8 +65,7 @@ function updatePrices() {
     addDataSetGroupByLinkReturnInterest('#00FF00', 10, 10, '/api/people/'+startIdx);
 
     var HASH_ADD_TIMER = setInterval(function(){
-        console.log('here' + hSet.size);
-        if(hSet.size>29){
+        if(hSet.size>MAX_HASH-2){
             addDataSetGroupByHash('#00FF00', 10, 10);
             clearInterval(HASH_ADD_TIMER);
         }
@@ -95,7 +97,7 @@ function getPeopleOfSimilarInterests(topicKeyword){
         try {
             var parBody = JSON.parse(body);
             var t = 0;
-            while(parBody.profiles[t]!=null && hSet.size<30) {
+            while(parBody.profiles[t]!=null && hSet.size<MAX_HASH) {
                 hSet.add(parBody.profiles[t].link);
                 t++;
             }
@@ -105,13 +107,31 @@ function getPeopleOfSimilarInterests(topicKeyword){
 
 
 function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
-    var i = 0;
+    var i = 30*CURRENT_GROUP;
     console.log('at adding pt' + hSet.size);
     hSet.forEach(function(link){
         console.log(link);
         addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i);
         i++;
+        hSet.delete(link);
     });
+    CURRENT_GROUP++;
+
+    //pave the way for a new hset
+    var EMPTY_HASH_TIMER = setInterval(function() {
+        if(hSet.size==0 && TOTAL_GROUPS<20) {
+            addDataSetGroupByLinkReturnInterest('#00FF00', Math.random()*1000, Math.random()*1000, '/api/people/' + int(Math.random()*1000));
+            clearInterval(EMPTY_HASH_TIMER);
+            TOTAL_GROUPS++;
+        }
+    }, 10000);
+
+    var HASH_ADD_TIMER = setInterval(function(){
+        if(hSet.size>MAX_HASH-2){
+            addDataSetGroupByHash('#00FF00', Math.random()*1000, Math.random()*1000);
+            clearInterval(HASH_ADD_TIMER);
+        }
+    }, 10000);
 }
 
 function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
