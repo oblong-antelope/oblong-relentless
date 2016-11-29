@@ -120,7 +120,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     //pave the way for a new hset
     var EMPTY_HASH_TIMER = setInterval(function() {
         if(hSet.size==0 && TOTAL_GROUPS<20) {
-            addDataSetGroupByLinkReturnInterest('#00FF00', Math.random()*1000, Math.random()*1000, '/api/people/' + int(Math.random()*1000));
+            addDataSetGroupByLinkReturnInterest('#00FF00', Math.random()*1000, Math.random()*1000, '/api/people/' + Math.floor(Math.random()*1000));
             clearInterval(EMPTY_HASH_TIMER);
             TOTAL_GROUPS++;
         }
