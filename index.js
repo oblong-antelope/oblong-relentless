@@ -13,12 +13,14 @@ app.use(bodyParser.json());
 var DATASET = [];
 var hSet = new Set();
 var MAX_HASH = 100;
-var MAX_EPOCH_WAIT = 2;
+var MAX_EPOCH_WAIT = 3;
 
 var EPOCHS_WAITED = 0;
 
 var TOTAL_GROUPS = 100;
 var CURRENT_GROUP = 0;
+
+var EPOCH_TIME = 5000;
 
 app.post('/', function(req, res) {
     //console.log(req.body.origin);
@@ -105,11 +107,14 @@ function updatePrices() {
     addDataSetGroupByLinkReturnInterest('/api/people/'+startIdx);
 
     var HASH_ADD_TIMER = setInterval(function(){
-        if(hSet.size>MAX_HASH-2){
-            addDataSetGroupByHash('#00FF00', 10, 10);
+        if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
+            EPOCHS_WAITED = 0;
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*40, Math.random()*25);
             clearInterval(HASH_ADD_TIMER);
         }
-    }, 1000);
+        EPOCHS_WAITED++;
+        console.log('hset size is --------------' + hSet.size + ' --- epochs ' + EPOCHS_WAITED);
+    }, EPOCH_TIME);
 }
 
 
@@ -163,17 +168,17 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
             addDataSetGroupByLinkReturnInterest('/api/people/' + Math.random().toString().slice(-3));
             clearInterval(EMPTY_HASH_TIMER);
         }
-    }, 10000);
+    }, EPOCH_TIME);
 
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash(generateRandomColour(), Math.random()*400, Math.random()*250);
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*40, Math.random()*25);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
         console.log('hset size is --------------' + hSet.size + ' --- epochs ' + EPOCHS_WAITED);
-    }, 10000);
+    }, EPOCH_TIME);
 }
 
 function generateRandomColour(){
@@ -194,8 +199,8 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
             var label = ' [' + department + '] ' + name;
             DATASET[i] = {
                 label: label,
-                x: xOrigin + 10*Math.random(),
-                y: yOrigin + 10*Math.random(),
+                x: xOrigin + 3*Math.random(),
+                y: yOrigin + 3*Math.random(),
                 r: 5 * Math.random() + 8,
                 backgroundColor: dotColor
             };
