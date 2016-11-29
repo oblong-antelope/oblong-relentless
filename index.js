@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-//25x40 cube is the entire spacea
+//25x40 cube is the entire spaceaa
 
 var DATASET = [];
 var hSet = new Set();
