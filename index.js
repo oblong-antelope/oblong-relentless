@@ -61,15 +61,6 @@ function formDataSets(origin){
             j++;
         }
     }
-    ds[DATASET.length] = {
-        label: '',
-        data: [{
-            x: leftb,
-            y: upb,
-            r: 0.3
-        }],
-        backgroundColor:'#000000'
-    }
     return ds;
 }
 
