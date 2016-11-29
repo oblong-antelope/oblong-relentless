@@ -133,8 +133,8 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>5){
             addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
             clearInterval(HASH_ADD_TIMER);
-            EPOCHS_WAITED++;
         }
+        EPOCHS_WAITED++;
     }, 10000);
 }
 
@@ -153,7 +153,6 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
                 r: 5 * Math.random() + 8,
                 backgroundColor: dotColor
             };
-            console.log(i);
             console.log(hSet.size);
         }catch(e){
             console.log(i + ' failed ' + e);
