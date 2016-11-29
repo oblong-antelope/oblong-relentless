@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 var DATASET = [];
 var hSet = new Set();
 var MAX_HASH = 30;
+var MAX_EPOCH_WAIT = 3;
 
 var EPOCHS_WAITED = 0;
 
@@ -130,7 +131,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     }, 10000);
 
     var HASH_ADD_TIMER = setInterval(function(){
-        if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>5){
+        if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
             addDataSetGroupByHash(generateRandomColour(), Math.random()*40, Math.random()*25);
             clearInterval(HASH_ADD_TIMER);
