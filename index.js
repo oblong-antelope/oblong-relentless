@@ -20,6 +20,7 @@ app.post('/', function(req, res) {
     //console.log(req.body.origin);
 
     if(req.body.origin=='100'){
+        console.log('started off');
         startOff();
     }
 
