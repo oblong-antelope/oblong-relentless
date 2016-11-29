@@ -44,10 +44,11 @@ function formDataSets(origin){
     var rightb = 40;
     var upb = 0;
     var downb = 25;
+    console.log(leftb + '  ' + rightb + '  ' + upb + '  ' + downb);
+    
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i]==null){continue;}
 
-        console.log(leftb + '  ' + rightb + '  ' + upb + '  ' + downb);
         if(DATASET[i].x>leftb && DATASET[i].y>upb && DATASET[i].x<rightb && DATASET[i].y<downb) {
             ds[j] = {
                 label: DATASET[i].label,
