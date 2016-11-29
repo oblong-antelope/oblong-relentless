@@ -12,17 +12,13 @@ var DATASET = [];
 var hSet = new Set();
 var MAX_HASH = 30;
 
+var EPOCHS_WAITED = 0;
 
 var TOTAL_GROUPS = 10;
 var CURRENT_GROUP = 0;
 
 app.post('/', function(req, res) {
     //console.log(req.body.origin);
-
-    if(req.body.origin=='100'){
-        console.log('started off');
-        startOff();
-    }
 
     ds = formDataSets(req.body.origin);
 
@@ -33,26 +29,6 @@ app.post('/', function(req, res) {
         datasets: ds
     }));
 });
-
-function startOff(){
-    app.put('/', function(req, res){
-        //pave the way for a new hset
-        var EMPTY_HASH_TIMER = setInterval(function() {
-            if(hSet.size==0 && TOTAL_GROUPS<20) {
-                addDataSetGroupByLinkReturnInterest('/api/people/' + Math.random().toString().slice(-3));
-                clearInterval(EMPTY_HASH_TIMER);
-                TOTAL_GROUPS++;
-            }
-        }, 10000);
-
-        var HASH_ADD_TIMER = setInterval(function(){
-            if(hSet.size>MAX_HASH-2){
-                addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
-                clearInterval(HASH_ADD_TIMER);
-            }
-        }, 10000);
-    });
-}
 
 function formDataSets(origin){
     ds = [];
@@ -146,6 +122,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     //pave the way for a new hset
     var EMPTY_HASH_TIMER = setInterval(function() {
         if(hSet.size==0 && TOTAL_GROUPS<20) {
+            EPOCHS_WAITED = 0;
             addDataSetGroupByLinkReturnInterest('/api/people/' + Math.random().toString().slice(-3));
             clearInterval(EMPTY_HASH_TIMER);
             TOTAL_GROUPS++;
@@ -153,9 +130,10 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     }, 10000);
 
     var HASH_ADD_TIMER = setInterval(function(){
-        if(hSet.size>MAX_HASH-2){
+        if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>5){
             addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
             clearInterval(HASH_ADD_TIMER);
+            EPOCHS_WAITED++;
         }
     }, 10000);
 }
