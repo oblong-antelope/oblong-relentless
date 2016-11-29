@@ -62,7 +62,7 @@ function updatePrices() {
     }*/
 
     var startIdx = 24;
-    addDataSetGroupByLinkReturnInterest('#00FF00', 10, 10, '/api/people/'+startIdx);
+    addDataSetGroupByLinkReturnInterest('/api/people/'+startIdx);
 
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2){
