@@ -36,14 +36,10 @@ app.post('/', function(req, res) {
 function formDataSets(origin){
     ds = [];
     var j = 0;
-    /*var leftb = origin[0];
+    var leftb = origin[0];
     var rightb = origin[2];
     var upb = origin[1];
-    var downb = origin[3];*/
-    var leftb = 0;
-    var rightb = 40;
-    var upb = 0;
-    var downb = 25;
+    var downb = origin[3];
     console.log(leftb + '  ' + rightb + '  ' + upb + '  ' + downb);
 
     for(var i=0; i<DATASET.length; i++){
