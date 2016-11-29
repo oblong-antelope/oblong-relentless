@@ -12,12 +12,12 @@ app.use(bodyParser.json());
 
 var DATASET = [];
 var hSet = new Set();
-var MAX_HASH = 30;
-var MAX_EPOCH_WAIT = 3;
+var MAX_HASH = 100;
+var MAX_EPOCH_WAIT = 2;
 
 var EPOCHS_WAITED = 0;
 
-var TOTAL_GROUPS = 30;
+var TOTAL_GROUPS = 100;
 var CURRENT_GROUP = 0;
 
 app.post('/', function(req, res) {
@@ -168,7 +168,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     var HASH_ADD_TIMER = setInterval(function(){
         if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>MAX_EPOCH_WAIT){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash(generateRandomColour(), Math.random()*40, Math.random()*25);
+            addDataSetGroupByHash(generateRandomColour(), Math.random()*400, Math.random()*250);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
@@ -194,8 +194,8 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
             var label = ' [' + department + '] ' + name;
             DATASET[i] = {
                 label: label,
-                x: xOrigin + 3*Math.random(),
-                y: yOrigin + 3*Math.random(),
+                x: xOrigin + 10*Math.random(),
+                y: yOrigin + 10*Math.random(),
                 r: 5 * Math.random() + 8,
                 backgroundColor: dotColor
             };
