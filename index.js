@@ -8,6 +8,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+//25x40 cube is the entire space
+
 var DATASET = [];
 var hSet = new Set();
 var MAX_HASH = 30;
@@ -128,9 +130,9 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     }, 10000);
 
     var HASH_ADD_TIMER = setInterval(function(){
-        if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>10){
+        if(hSet.size>MAX_HASH-2 || EPOCHS_WAITED>5){
             EPOCHS_WAITED = 0;
-            addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*40, Math.random()*40);
+            addDataSetGroupByHash('#' + Math.floor(Math.random() * 16777215).toString(16), Math.random()*25, Math.random()*40);
             clearInterval(HASH_ADD_TIMER);
         }
         EPOCHS_WAITED++;
