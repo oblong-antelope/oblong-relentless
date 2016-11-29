@@ -23,7 +23,7 @@ var CURRENT_GROUP = 0;
 app.post('/', function(req, res) {
     //console.log(req.body.origin);
 
-    ds = formDataSets(req.body.origin);
+    ds = formDataSets([req.body.x, req.body.y, req.body.isZ]);
 
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'POST');
@@ -38,7 +38,7 @@ function formDataSets(origin){
     var j = 0;
     for(var i=0; i<DATASET.length; i++){
         if(DATASET[i]==null){continue;}
-        //if(DATASET[i].x>0 && DATASET[i].y>0) {
+        if(DATASET[i].x>5*origin[2] && DATASET[i].y>5*origin[2] && DATASET[i].x>40 - 5*origin[2] && DATASET[i].y<25 - 5*origin[2]) {
             ds[j] = {
                 label: DATASET[i].label,
                 data:[{
@@ -50,7 +50,7 @@ function formDataSets(origin){
             };
             j++;
 
-        //}
+        }
     }
     return ds;
 }
