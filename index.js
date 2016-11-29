@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 var DATASET = [];
 var hSet = new Set();
 var MAX_HASH = 20;
-var HASH_ADD_TIMER;
 
 
 app.post('/', function(req, res) {
@@ -62,16 +61,16 @@ function updatePrices() {
     var startIdx = 24;
     addDataSetGroupByLinkReturnInterest('#00FF00', 10, 10, '/api/people/'+startIdx);
 
-    HASH_ADD_TIMER = setInterval(timerForHashAdd, 1000);
+    var HASH_ADD_TIMER = setInterval(function(){
+        console.log('here' + hSet.size);
+        if(hSet.size>29){
+            addDataSetGroupByHash('#00FF00', 10, 10);
+            clearInterval(HASH_ADD_TIMER);
+        }
+    }, 1000);
 }
 
-function timerForHashAdd(){
-    console.log('here' + hSet.size);
-    if(hSet.size<29){
-        addDataSetGroupByHash('#00FF00', 10, 10);
-        clearInterval(HASH_ADD_TIMER);
-    }
-}
+
 
 
 function addDataSetGroupByLinkReturnInterest(dotColor, xOrigin, yOrigin, link){
