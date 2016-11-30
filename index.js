@@ -53,6 +53,7 @@ function formDataSets(origin){
                 x:DATASET[i].x,
                 y:DATASET[i].y,
                 r:DATASET[i].r,
+                idx:DATASET[i].idx
             }],
             backgroundColor:DATASET[i].backgroundColor
         };
@@ -165,7 +166,8 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
                 x: xOrigin + 8*Math.random(),
                 y: yOrigin + 8*Math.random(),
                 r: 5 * Math.random() + 8,
-                backgroundColor: dotColor
+                backgroundColor: dotColor,
+                idx: link
             };
             console.log(i);
         }catch(e){
