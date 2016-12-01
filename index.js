@@ -97,7 +97,11 @@ function addDataSetGroupByLinkReturnInterest(link){
             var keywords = parBody.keywords;
 
             for(var keys in keywords){
-                getPeopleOfSimilarInterests(keys);
+                //we will assume our data is randomly drawn from an Exp(7) distribution
+                //Warning: these values are not necessarily bounded
+                if(keywords[keys]>Math.random()*7) {
+                    getPeopleOfSimilarInterests(keys);
+                }
             }
         }catch(e){
             console.log(link + ' failed ' + e);
