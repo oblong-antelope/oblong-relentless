@@ -17,7 +17,7 @@ var MAX_EPOCH_WAIT = 3;
 
 var EPOCHS_WAITED = 0;
 
-var TOTAL_GROUPS = 500;
+var TOTAL_GROUPS = 30;
 var CURRENT_GROUP = 0;
 
 var EPOCH_TIME = 5000;
@@ -33,7 +33,7 @@ app.post('/', function(req, res) {
     ds = formDataSets([req.body.x1, req.body.y1, req.body.x2, req.body.y2]);
 
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'POST');
+    res.header('Access-Control-Allow-Methods', '*');
     res.set('Content-Type', 'text/plain');
     res.send(JSON.stringify({
         datasets: ds
