@@ -28,7 +28,7 @@ var ENTIRE_WORLD_SIZE_Y = 100;
 
 
 app.post('/', function(req, res) {
-    //console.log(req.body.origin);
+    //console.log(req.body.origin)
 
     ds = formDataSets([req.body.x1, req.body.y1, req.body.x2, req.body.y2]);
 
