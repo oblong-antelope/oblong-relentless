@@ -35,7 +35,6 @@ app.post('/', function(req, res) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', '*');
     res.set('Content-Type', 'text/plain');
-    console.log(res);
     res.send(JSON.stringify({
         datasets: ds
     }));
