@@ -135,7 +135,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     });
     CURRENT_GROUP++;
 
-    //pave the way for a new hset
+    //pave the way for a new hse
     var EMPTY_HASH_TIMER = setInterval(function() {
         if(hSet.size===0 && CURRENT_GROUP<TOTAL_GROUPS) {
             addDataSetGroupByLinkReturnInterest('/api/people/' + Math.random().toString().slice(-3));
