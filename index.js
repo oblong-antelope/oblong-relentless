@@ -85,6 +85,7 @@ function formDataSets(origin){
 
 
 var SERVER_ADDRESS = "http://battle.horse/oblong";
+var SERVER_ADDRESS_NOOBLONG = "http://battle.horse";
 function updatePrices() {
 
     var startIdx = 24;
@@ -182,7 +183,7 @@ function generateRandomColour(){
 }
 
 function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
-    postRequest.get(SERVER_ADDRESS + link, function (err, response, body) {
+    postRequest.get(SERVER_ADDRESS_NOOBLONG + link, function (err, response, body) {
         console.log(body + ' aaaaaaaaaa ' + link);
         try {
             var parBody = JSON.parse(body);
