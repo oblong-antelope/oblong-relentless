@@ -47,9 +47,11 @@ app.post('/', function(req, res) {
     res.set('Content-Type', 'text/plain');
     res.send(JSON.stringify({
         datasets: ds,
-        legend: [{colour:'#14F542', text:'fdds'},
-            {colour:'#F4214F', text:'sdf'},
-            {colour:'#FF25F2', text:'aaaaaaasdaaaaaaaa'}]
+        legend: [{colour:'#FF0000', text:'Peng Peng Technologies'},
+            {colour:'#00FF00', text:'Peng Peng Aerospace'},
+            {colour:'#0000FF', text:'Ping Pong Cosmetics'},
+            {colour:'#00FFFF', text:'Ping Pong Lorem Ipsum'},
+            {colour:'#FFFF00', text:'the ACI talks'}]
     }));
 });
 
