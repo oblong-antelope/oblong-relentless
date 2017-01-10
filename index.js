@@ -37,13 +37,19 @@ app.options("/*", function(req, res, next){
 app.post('/', function(req, res) {
     //console.log(req.body.origin)
 
-    ds = formDataSets([req.body.x1, req.body.y1, req.body.x2, req.body.y2]);
+    /*var dslg*/ds = formDataSets([req.body.x1, req.body.y1, req.body.x2, req.body.y2]);
+
+    /*var ds = dslg[0];
+    * var lg = dslg[1];*/
 
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', '*');
     res.set('Content-Type', 'text/plain');
     res.send(JSON.stringify({
-        datasets: ds
+        datasets: ds,
+        legend: [{colour:'#14F542', text:'fdds'},
+            {colour:'#F4214F', text:'sdf'},
+            {colour:'#FF25F2', text:'aaaaaaasdaaaaaaaa'}]
     }));
 });
 
