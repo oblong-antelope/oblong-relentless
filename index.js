@@ -111,7 +111,7 @@ function addDataSetGroupByLinkReturnInterest(link){
                 }
             }
         }catch(e){
-            setTimeout(addDataSetGroupByLinkReturnInterest, 3000, link);
+            setTimeout(addDataSetGroupByLinkReturnInterest, 30000, link);
             console.log(link + ' GET PEOPLE failed ' + e);
         }
     });
@@ -128,7 +128,7 @@ function getPeopleOfSimilarInterests(topicKeyword){
                 t++;
             }
         }catch(e){
-            setTimeout(getPeopleOfSimilarInterests, 3000, topicKeyword);
+            setTimeout(getPeopleOfSimilarInterests, 30000, topicKeyword);
             console.log('KEYWORD ISSUE - ' + e);
         }
     });
@@ -196,7 +196,7 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
             };
             console.log(i);
         }catch(e){
-            setTimeout(addDataSetGroupWithLink, 3000, dotColor, xOrigin, yOrigin, link, i);
+            setTimeout(addDataSetGroupWithLink, 30000, dotColor, xOrigin, yOrigin, link, i);
             console.log(i + ' ADD DATASET failed ' + e);
         }
     });
