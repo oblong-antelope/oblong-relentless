@@ -183,6 +183,7 @@ function generateRandomColour(){
 
 function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
     postRequest.get(SERVER_ADDRESS + link, function (err, response, body) {
+        console.log(body);
         try {
             var parBody = JSON.parse(body);
             var name = parBody.name.title + ' ' + parBody.name.first
