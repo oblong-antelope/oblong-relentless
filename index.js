@@ -47,11 +47,11 @@ app.post('/', function(req, res) {
     res.set('Content-Type', 'text/plain');
     res.send(JSON.stringify({
         datasets: ds,
-        legend: [{colour:'#FF0000', text:'Peng Peng Technologies'},
-            {colour:'#00FF00', text:'Peng Peng Aerospace'},
-            {colour:'#0000FF', text:'Ping Pong Cosmetics'},
-            {colour:'#00FFFF', text:'Ping Pong Lorem Ipsum'},
-            {colour:'#FFFF00', text:'the ACI talks'}]
+        legend: [{colour:'#FF0000', text:'Public Health Research'},
+            {colour:'#00FF00', text:'Computational Chemistry'},
+            {colour:'#0000FF', text:'Benzene Research'},
+            {colour:'#00FFFF', text:'Chemical Engineering for Public Health'},
+            {colour:'#FFFF00', text:'Heart'}]
     }));
 });
 
@@ -225,27 +225,3 @@ var server = app.listen(PORT, function(){
 
     console.log('Started Server at %s:%s', host, port);
 });
-
-
-
-/*function addDataSetGroup(dotColor, xOrigin, yOrigin, i){
-    postRequest.get(SERVER_ADDRESS + '/api/people/' + i, function (err, response, body) {
-        try {
-            var parBody = JSON.parse(body);
-            var name = parBody.name.title + ' ' + parBody.name.first
-                + ' ' + parBody.name.initials + ' ' + parBody.name.last;
-            var department = parBody.department;
-            var label = ' [' + department + '] ' + name;
-            DATASET[i] = {
-                label: label,
-                x: xOrigin + 3*Math.random(),
-                y: yOrigin + 3*Math.random(),
-                r: 5 * Math.random() + 8,
-                backgroundColor: dotColor
-            };
-            console.log(i);
-        }catch(e){
-            console.log(i + ' failed ' + e);
-        }
-    });
-}*/
