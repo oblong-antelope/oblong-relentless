@@ -26,6 +26,13 @@ var ENTIRE_WORLD_SIZE_X = 60;
 var ENTIRE_WORLD_SIZE_Y = 100;
 
 
+app.options("/*", function(req, res, next){
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    res.send(200);
+});
+
 
 app.post('/', function(req, res) {
     //console.log(req.body.origin)
@@ -104,7 +111,7 @@ function addDataSetGroupByLinkReturnInterest(link){
                 }
             }
         }catch(e){
-            console.log(link + ' failed ' + e);
+            console.log(link + ' GET PEOPLE failed ' + e);
         }
     });
 }
@@ -119,7 +126,7 @@ function getPeopleOfSimilarInterests(topicKeyword){
                 hSet.add(parBody.profiles[t].link);
                 t++;
             }
-        }catch(e){console.log(e);}
+        }catch(e){console.log('KEYWORD ISSUE - ' + e);}
     });
 }
 
@@ -138,7 +145,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     //pave the way for a new hse
     var EMPTY_HASH_TIMER = setInterval(function() {
         if(hSet.size===0 && CURRENT_GROUP<TOTAL_GROUPS) {
-            addDataSetGroupByLinkReturnInterest('/api/people/' + Math.random().toString().slice(-3));
+            addDataSetGroupByLinkReturnInterest('/api/people/' + Math.floor(550*Math.random()));
             clearInterval(EMPTY_HASH_TIMER);
         }
     }, EPOCH_TIME);
@@ -185,7 +192,7 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
             };
             console.log(i);
         }catch(e){
-            console.log(i + ' failed ' + e);
+            console.log(i + ' ADD DATASET failed ' + e);
         }
     });
 }
