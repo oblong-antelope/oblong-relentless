@@ -84,7 +84,7 @@ function formDataSets(origin){
 
 
 
-var SERVER_ADDRESS = "https://battle.horse";
+var SERVER_ADDRESS = "http://battle.horse/oblong";
 function updatePrices() {
 
     var startIdx = 24;
