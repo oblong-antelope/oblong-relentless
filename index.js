@@ -105,7 +105,7 @@ function addDataSetGroupByLinkReturnInterest(link){
 
             for(var keys in keywords){
                 //we will assume our data is randomly drawn from an Exp(7) distribution
-                //Warning: these values are not necessarily boundeda
+                //Warning: these values are not necessarily boundedaa
                 if(keywords[keys]>Math.random()*10) {
                     getPeopleOfSimilarInterests(keys);
                 }
