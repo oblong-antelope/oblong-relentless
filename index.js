@@ -46,7 +46,7 @@ function formDataSets(origin, res){
     var ds = [];
     var j = 0;
 
-    for(var i=0; i<DATASET.length && j<800; i++){
+    for(var i=0; i<DATASET.length && j<500; i++){
         if(DATASET[i]==null){continue;}
 
         ds[j] = {
