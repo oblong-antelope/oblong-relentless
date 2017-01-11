@@ -25,6 +25,8 @@ var EPOCH_TIME = 5000;
 var ENTIRE_WORLD_SIZE_X = 60;
 var ENTIRE_WORLD_SIZE_Y = 100;
 
+var PIVOT_POINT = 7; //assuming an Exponential(7, 49) distribution
+
 
 app.options("/*", function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
@@ -47,12 +49,7 @@ app.post('/', function(req, res) {
     res.header('Access-Control-Allow-Methods', '*');
     res.set('Content-Type', 'text/plain');
     res.send(JSON.stringify({
-        datasets: ds,
-        legend: [{colour:'#FF0000', text:'Public Health Research'},
-            {colour:'#00FF00', text:'Computational Chemistry'},
-            {colour:'#0000FF', text:'Benzene Research'},
-            {colour:'#00FFFF', text:'Chemical Engineering for Public Health'},
-            {colour:'#FFFF00', text:'Heart'}]
+        datasets: ds
     }));
 });
 
@@ -115,8 +112,9 @@ function addDataSetGroupByLinkReturnInterest(link){
             for(var keys in keywords){
                 //we will assume our data is randomly drawn from an Exp(7) distribution
                 //Warning: these values are not necessarily boundedaa
+
                 if(keywords[keys]>Math.random()*10) {
-                    getPeopleOfSimilarInterests(keys);
+                    getPeopleOfSimilarInterests(keys, keywords[keys]);
                 }
             }
         }catch(e){
@@ -126,18 +124,18 @@ function addDataSetGroupByLinkReturnInterest(link){
     });
 }
 
-function getPeopleOfSimilarInterests(topicKeyword){
+function getPeopleOfSimilarInterests(topicKeyword, k){
     console.log(topicKeyword);
     postRequest.get(SERVER_ADDRESS + '/api/keywords/' + topicKeyword, function (err, response, body) {
         try {
             var parBody = JSON.parse(body);
             var t = 0;
             while(parBody.profiles[t]!=null && hSet.size<MAX_HASH) {
-                hSet.add(parBody.profiles[t].link);
+                hSet.add([parBody.profiles[t].link, k]);
                 t++;
             }
         }catch(e){
-            setTimeout(getPeopleOfSimilarInterests, 30000, topicKeyword);
+            setTimeout(getPeopleOfSimilarInterests, 30000, topicKeyword, k);
             console.log('KEYWORD ISSUE - ' + e);
         }
     });
@@ -149,7 +147,7 @@ function addDataSetGroupByHash(dotColor, xOrigin, yOrigin){
     console.log('at adding pt' + hSet.size);
     hSet.forEach(function(link){
         console.log(link);
-        addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i);
+        addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link[0], link[1], i);
         i++;
         hSet.delete(link);
     });
@@ -182,21 +180,20 @@ function generateRandomColour(){
     return col;
 }
 
-function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
+function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, k, i){
     postRequest.get(SERVER_ADDRESS_NOOBLONG + link, function (err, response, body) {
         console.log(body + ' aaaaaaaaaa ' + link);
         try {
             var parBody = JSON.parse(body);
-            console.log('LENGTH OF PUBLICATIONS - ' + (5 + 0.1*parBody.publications.length));
             var name = parBody.name.title + ' ' + parBody.name.first
                 + ' ' + parBody.name.initials + ' ' + parBody.name.last;
             var department = parBody.department;
             var label = ' [' + department + '] ' + name;
             DATASET[i] = {
                 label: label,
-                x: xOrigin + 8*Math.random(),
-                y: yOrigin + 8*Math.random(),
-                r: (5+0.1*parBody.publications.length),
+                x: xOrigin + 8*Math.random() + Math.abs(k - PIVOT_POINT),
+                y: yOrigin + 8*Math.random() + Math.abs(k - PIVOT_POINT),
+                r: (6+0.2*parBody.publications.length),
                 backgroundColor: dotColor,
                 idx: link,
                 department: parBody.department,
@@ -207,7 +204,7 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
             };
             console.log(i);
         }catch(e){
-            setTimeout(addDataSetGroupWithLink, 30000, dotColor, xOrigin, yOrigin, link, i);
+            setTimeout(addDataSetGroupWithLink, 30000, dotColor, xOrigin, yOrigin, link, k, i);
             console.log(i + ' ADD DATASET failed ' + e);
         }
     });
