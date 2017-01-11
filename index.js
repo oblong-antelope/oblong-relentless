@@ -33,17 +33,30 @@ app.options("/*", function(req, res, next){
     res.send(200);
 });
 
+var ds = [];
+
+setInterval(formDataSets, 3000);
 
 app.post('/', function(req, res) {
     //console.log(req.body.origin)
 
-    var ds = formDataSets([req.body.x1, req.body.y1, req.body.x2, req.body.y2], res);
+    //var ds = formDataSets([req.body.x1, req.body.y1, req.body.x2, req.body.y2], res);
 
 
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', '*');
+    res.set('Content-Type', 'text/plain');
+    res.send(JSON.stringify({
+        datasets: ds,
+        legend: [{colour:'#FF0000', text:'Public Health Research'},
+            {colour:'#00FF00', text:'Computational Chemistry'},
+            {colour:'#0000FF', text:'Benzene Research'},
+            {colour:'#00FFFF', text:'Chemical Engineering for Public Health'},
+            {colour:'#FFFF00', text:'Heart'}]
+    }));
 });
 
-function formDataSets(origin, res){
-    var ds = [];
+function formDataSets(){
     var j = 0;
 
     for(var i=0; i<DATASET.length && j<500; i++){
@@ -66,18 +79,6 @@ function formDataSets(origin, res){
         };
         j++;
     }
-
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', '*');
-    res.set('Content-Type', 'text/plain');
-    res.send(JSON.stringify({
-        datasets: ds,
-        legend: [{colour:'#FF0000', text:'Public Health Research'},
-            {colour:'#00FF00', text:'Computational Chemistry'},
-            {colour:'#0000FF', text:'Benzene Research'},
-            {colour:'#00FFFF', text:'Chemical Engineering for Public Health'},
-            {colour:'#FFFF00', text:'Heart'}]
-    }));
 
 }
 
