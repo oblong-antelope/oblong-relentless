@@ -191,8 +191,8 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, k, i){
             var label = ' [' + department + '] ' + name;
             DATASET[i] = {
                 label: label,
-                x: xOrigin + 8*Math.random() + Math.abs(k - PIVOT_POINT),
-                y: yOrigin + 8*Math.random() + Math.abs(k - PIVOT_POINT),
+                x: xOrigin + 8*Math.random() + Math.abs(k - PIVOT_POINT)*(Math.random()-0.5)*2,
+                y: yOrigin + 8*Math.random() + Math.abs(k - PIVOT_POINT)*(Math.random()-0.5)*2,
                 r: (6+0.2*parBody.publications.length),
                 backgroundColor: dotColor,
                 idx: link,
