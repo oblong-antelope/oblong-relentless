@@ -59,7 +59,7 @@ app.post('/', function(req, res) {
 function formDataSets(){
     var j = 0;
 
-    for(var i=0; i<DATASET.length && j<500; i++){
+    for(var i=0; i<DATASET.length && j<900; i++){
         if(DATASET[i]==null){continue;}
 
         ds[j] = {
@@ -195,7 +195,7 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
                 label: label,
                 x: xOrigin + 8*Math.random(),
                 y: yOrigin + 8*Math.random(),
-                r: 5 * Math.random() + 8,
+                r: 8 * Math.random() + 5,
                 backgroundColor: dotColor,
                 idx: link,
                 department: parBody.department,
