@@ -187,6 +187,7 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
         console.log(body + ' aaaaaaaaaa ' + link);
         try {
             var parBody = JSON.parse(body);
+            console.log('LENGTH OF PUBLICATIONS - ' + (5 + 0.1*parBody.publications.length));
             var name = parBody.name.title + ' ' + parBody.name.first
                 + ' ' + parBody.name.initials + ' ' + parBody.name.last;
             var department = parBody.department;
@@ -195,7 +196,7 @@ function addDataSetGroupWithLink(dotColor, xOrigin, yOrigin, link, i){
                 label: label,
                 x: xOrigin + 8*Math.random(),
                 y: yOrigin + 8*Math.random(),
-                r: 8 * Math.random() + 5,
+                r: (5+0.1*parBody.publications.length),
                 backgroundColor: dotColor,
                 idx: link,
                 department: parBody.department,
